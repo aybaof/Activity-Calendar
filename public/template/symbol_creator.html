@@ -1,0 +1,127 @@
+<head>
+    <title>Activity Calendar</title>
+    <link rel="stylesheet" type="text/css" href="../styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../styles/symbol-creator.css">
+    <script src="../scripts/ui_element.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative vh-100 py-2 my-settings">
+        <a href="../index.html" class="btn position-absolute end-0 top-0 p-3">
+            <span class="material-icons md-36">
+                close
+            </span>
+        </a>
+        <a class="btn d-flex position-absolute top-0 start-0 justify-content-center align-items-center p-3"
+            href="./settings_menu.html">
+            <span class="material-icons md-36">
+                arrow_back_ios
+            </span>
+            <span class="fs-4">
+                Back
+            </span>
+        </a>
+        <div class="d-flex flex-column justify-content-between align-items-center row h-100">
+            <h3 class="text-dark text-center fs-4 fw-semibold m-3">Symbol creator</h3>
+            <div class="d-flex justify-content-between p-2 row flex-column align-items-center">
+                <div class="d-flex flex-column border-2 border border-dark col-5 mb-2 rounded" dt-custom-select="0"
+                    value="" id="type-dropdown">
+                    <div class="row d-flex p-2 position-relative">
+                        <p class="fs-4 m-0 col-10 text-center w-100" dt-select-label>Symbol Type</p>
+                        <span
+                            class="material-icons md-36 pe-4 col-2 d-flex justify-content-end align-items-center position-absolute end-0"
+                            dt-toggle="0">
+                            keyboard_arrow_down
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column text-center fs-4 d-none" dt-option-container>
+                        <button class="btn text-secondary" value="person">Person</button>
+                        <button class="btn text-secondary" value="transport">Transport</button>
+                        <button class="btn text-secondary" value="activity">Activity</button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column border-2 border border-dark col-5 d-none rounded" dt-custom-select="0"
+                    value="" id="category-dropdown">
+                    <div class="row d-flex p-2 position-relative">
+                        <p class="fs-4 m-0 col-10 text-center w-100" dt-select-label>Category</p>
+                        <span
+                            class="material-icons md-36 pe-4 col-2 d-flex justify-content-end align-items-center position-absolute end-0"
+                            dt-toggle="0">
+                            keyboard_arrow_down
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column text-center fs-4 d-none" dt-option-container>
+                        <button class="btn" value="art">art</button>
+                        <button class="btn" value="food">food</button>
+                        <button class="btn" value="sport">sport</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row flex-column align-items-center justify-content-center w-100">
+                <div class="d-flex flex-column justify-content-center align-items-center border border-2 border-dark rounded col-3 p-4 position-relative"
+                    dt-upload>
+                    <span class="material-icons md-36 mb-2">
+                        file_upload
+                    </span>
+                    <p class="fs-4">Upload image</p>
+                    <div id="canvasContainer" class="position-absolute w-100 h-100">
+                        <canvas id="imgCanvas" class="rounded"></canvas>
+                        <div id="imgLabel" class="d-none">
+                            <span id="imgLabelText"></span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn col-1 d-flex align-items-center justify-content-center d-none" dt-change-img>
+                    <span class="material-icons">
+                        restart_alt
+                    </span>
+                </button>
+                <div class="col-6 row flex-column fs-5 py-1">
+                    <div class="row py-3">
+                        <p class="fw-semibold col-4 m-0">File format</p>
+                        <p class="col-8 m-0">Jpg , Png , Svg</p>
+                    </div>
+                    <div class="row py-3">
+                        <p class="fw-semibold col-4 m-0">File size</p>
+                        <p class="col-8 m-0">3mb</p>
+                    </div>
+                </div>
+                <div class="col-6 justify-content-center d-flex flex-column py-4">
+                    <div class="range">
+                        <input type="range" class="form-range" min="0" max="200" id="zoomSlider" />
+                    </div>
+                    <div class="row justify-content-between">
+                        <button class="btn d-flex col-2" dt-zoom-controls="-5">
+                            <span class="material-icons">
+                                remove
+                            </span>
+                        </button>
+                        <label class="form-label m-0 col-8 d-flex align-items-center justify-content-center"
+                            for="delayRange">Image Zoom Level</label>
+                        <button class="btn d-flex col-2 justify-content-end" dt-zoom-controls="5">
+                            <span class="material-icons">
+                                add
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating col-6" id="nameInputContainer">
+                <input type="text" class="form-control border border-0 border-bottom border-dark rounded-0"
+                    id="symbolName" oninput="symbolNameChange()" placeholder="Name of the symbol">
+                <label for="symbolName" class="fw-semibold">Symbol name</label>
+            </div>
+            <button id="submitButton" class="btn btn-dark btn-sm col-2 fs-4 text-secondary rounded"
+                onclick="submitForm()" type="submit" value="Submit">
+                Create
+            </button>
+            </form>
+        </div>
+        <div id="loader">
+            Symbol is being created
+        </div>
+</body>

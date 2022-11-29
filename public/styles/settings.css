@@ -189,3 +189,12 @@ input:checked + .slider:before {
 [dt-option-container] {
   z-index: 1;
 }
+
+[dt-custom-select="0"].rounded {
+  border-radius: 500px !important;
+}
+
+[dt-custom-select="1"].rounded {
+  border-radius: 25px !important;
+  background-color: black;
+}

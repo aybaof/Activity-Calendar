@@ -19,7 +19,7 @@ function createWindow() {
       contextIsolation: false,
     },
   });
-  win.loadFile("./public/index.html");
+  win.loadFile("./public/template/settings_menu.html");
 }
 
 app.whenReady().then(async () => {
